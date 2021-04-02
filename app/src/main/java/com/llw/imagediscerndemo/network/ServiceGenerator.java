@@ -1,4 +1,4 @@
-package com.llw.imagediscerndemo;
+package com.llw.imagediscerndemo.network;
 
 import java.util.concurrent.TimeUnit;
 
@@ -67,11 +67,10 @@ public class ServiceGenerator {
      * 创建服务  参数就是API服务
      *
      * @param serviceClass 服务接口
-     * @param type         接口类型
      * @param <T>          泛型规范
      * @return api接口服务
      */
-    public static <T> T createService(Class<T> serviceClass, int type) {
+    public static <T> T createService(Class<T> serviceClass) {
 
         //创建OkHttpClient构建器对象
         OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder();
@@ -92,7 +91,7 @@ public class ServiceGenerator {
 
         //在Retrofit中设置httpclient
         //设置地址  就是上面的固定地址,如果你是本地访问的话，可以拼接上端口号  例如 +":8080"
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(urlType(type))
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                 //用Gson把服务端返回的json数据解析成实体
                 .addConverterFactory(GsonConverterFactory.create())
                 //放入OKHttp，之前说过retrofit是对OkHttp的进一步封装

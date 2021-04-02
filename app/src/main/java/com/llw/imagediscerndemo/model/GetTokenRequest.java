@@ -1,4 +1,4 @@
-package com.llw.imagediscerndemo;
+package com.llw.imagediscerndemo.model;
 
 /**
  * 获取鉴权认证Token请求实体

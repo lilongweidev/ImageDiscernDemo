@@ -1,4 +1,4 @@
-package com.llw.imagediscerndemo;
+package com.llw.imagediscerndemo.model;
 
 /**
  * 获取识别结果请求实体

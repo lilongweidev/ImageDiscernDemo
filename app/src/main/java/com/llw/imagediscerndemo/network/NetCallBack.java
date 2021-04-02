@@ -1,9 +1,8 @@
-package com.llw.imagediscerndemo;
+package com.llw.imagediscerndemo.network;
 
 import android.util.Log;
 
 import com.google.gson.Gson;
-import com.llw.mvplibrary.base.BaseResponse;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,24 +19,9 @@ public abstract class NetCallBack<T> implements Callback<T> {//这里实现了re
     @Override
     public void onResponse(Call<T> call, Response<T> response) {//数据返回
         if (response != null && response.body() != null && response.isSuccessful()) {
-
             onSuccess(call, response);
-
-            BaseResponse baseResponse = new Gson().fromJson(new Gson().toJson(response.body()), BaseResponse.class);
-            if (baseResponse.getCode() == 400) {
-                Log.e("Error", 400 + "");
-                onSuccess(call, response);
-            } else if (baseResponse.getCode() == 404) {//404
-                Log.e("Error", 404 + "");
-                onSuccess(call, response);
-            } else if (baseResponse.getCode() == 500) {//500
-                Log.e("Error", 500 + "");
-                onSuccess(call, response);
-            } else {//无异常则返回数据
-                onSuccess(call, response);
-            }
         } else {
-            onFailed();
+            onFailed(response.raw().toString());
         }
     }
 
@@ -45,14 +29,14 @@ public abstract class NetCallBack<T> implements Callback<T> {//这里实现了re
     @Override
     public void onFailure(Call<T> call, Throwable t) {
         Log.d("data str", t.toString());
-        onFailed();
+        onFailed(t.toString());
     }
 
     //数据返回
     public abstract void onSuccess(Call<T> call, Response<T> response);
 
     //失败异常
-    public abstract void onFailed();
+    public abstract void onFailed(String errorStr);
 
 
 }
