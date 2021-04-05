@@ -31,7 +31,6 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-
     //权限请求框架
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
@@ -40,7 +39,12 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
-
     //RecyclerView最好的适配器，让你的适配器一目了然，告别代码冗余
-    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //Glide框架
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
+    //添加material库
+    implementation 'com.google.android.material:material:1.2.1'
+
 }

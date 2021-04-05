@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,17 +8,44 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <Button
+    <ImageView
+        android:id="@+id/iv_picture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_marginBottom="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="IdentifyWebPictures"
-        android:text="识别网络图片" />
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="IdentifyAlbumPictures"
-        android:text="识别相册图片" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="IdentifyWebPictures"
+            android:text="识别网络图片" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="IdentifyAlbumPictures"
+            android:text="识别相册图片" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="IdentifyTakePhotoImage"
+            android:text="识别拍照图片" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:visibility="gone"
+        android:id="@+id/pb_loading"
+        android:layout_centerInParent="true"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
 
 
-</LinearLayout>
+</RelativeLayout>

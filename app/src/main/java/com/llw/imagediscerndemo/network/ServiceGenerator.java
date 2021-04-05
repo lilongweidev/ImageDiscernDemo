@@ -14,54 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class ServiceGenerator {
 
-
     /**
-     * https://free-api.heweather.net/s6/weather/now?key=3086e91d66c04ce588a7f538f917c7f4&location=深圳
-     * 将上方的API接口地址进行拆分得到不变的一部分,实际开发中可以将这一部分作为服务器的ip访问地址
+     * 默认地址
      */
-    //地址
     public static String BASE_URL = "https://aip.baidubce.com";
-
-    private static String urlType(int type) {
-        switch (type) {
-            //和风天气
-            case 0:
-                //鉴权地址
-                BASE_URL = "https://aip.baidubce.com/oauth/2.0/token";
-                break;
-            //必应每日一图
-            case 1:
-                BASE_URL = "https://aip.baidubce.com/rest/2.0/image-classify/v2/advanced_general";
-                break;
-            //搜索城市
-            case 2:
-                BASE_URL = "https://search.heweather.net";
-                break;
-            //和风天气  新增
-            case 3:
-                //V7版本接口地址
-                BASE_URL = "https://devapi.qweather.net";
-                break;
-            //搜索城市  新增
-            case 4:
-                //V7版本下的搜索城市地址
-                BASE_URL = "https://geoapi.qweather.net";
-                break;
-            //APP更新  分发平台更新接口
-            case 5:
-                //Fr.im更新
-                BASE_URL = "http://api.bq04.com";
-                break;
-            //随机手机壁纸
-            case 6:
-                //网络手机壁纸返回地址
-                BASE_URL = "http://service.picasso.adesk.com";
-                break;
-            default:
-                break;
-        }
-        return BASE_URL;
-    }
 
     /**
      * 创建服务  参数就是API服务
