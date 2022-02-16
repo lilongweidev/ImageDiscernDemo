@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
         bottomView = getLayoutInflater().inflate(R.layout.dialog_bottom, null);
 
         rxPermissions = new RxPermissions(this);
+        //获取Token
+        getAccessToken();
     }
 
     /**
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                             //当前时间 秒
                             long currentTimeMillis = System.currentTimeMillis() / 1000;
                             //放入缓存
+                            Log.e(TAG, "onSuccess: " + accessToken);
                             SPUtils.putString(Constant.TOKEN, accessToken, MainActivity.this);
                             SPUtils.putLong(Constant.GET_TOKEN_TIME, currentTimeMillis, MainActivity.this);
                             SPUtils.putLong(Constant.TOKEN_VALID_PERIOD, expiresIn, MainActivity.this);
@@ -177,12 +180,15 @@ public class MainActivity extends AppCompatActivity {
      */
     public void IdentifyWebPictures(View view) {
         pbLoading.setVisibility(View.VISIBLE);
-        String token = getAccessToken();
+        if (accessToken == null) {
+            showMsg("获取AccessToken到null");
+            return;
+        }
         String imgUrl = "https://bce-baiyu.cdn.bcebos.com/14ce36d3d539b6004ef2e45fe050352ac65cb71e.jpeg";
         //显示图片
         Glide.with(this).load(imgUrl).into(ivPicture);
         showMsg("图像识别中");
-        ImageDiscern(token, null, imgUrl);
+        ImageDiscern(accessToken, null, imgUrl);
     }
 
     /**
@@ -359,7 +365,10 @@ public class MainActivity extends AppCompatActivity {
      */
     private void localImageDiscern(String imagePath) {
         try {
-            String token = getAccessToken();
+            if (accessToken == null) {
+                showMsg("获取AccessToken到null");
+                return;
+            }
             //通过图片路径显示图片
             Glide.with(this).load(imagePath).into(ivPicture);
             //按字节读取文件
@@ -367,10 +376,9 @@ public class MainActivity extends AppCompatActivity {
             //字节转Base64
             String imageBase64 = Base64Util.encode(imgData);
             //图像识别
-            ImageDiscern(token, imageBase64, null);
+            ImageDiscern(accessToken, imageBase64, null);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 }
